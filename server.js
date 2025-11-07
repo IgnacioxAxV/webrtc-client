@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'index.html'));
 });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'src', 'index.html'));
+});
+
 app.listen(PORT, () => {
     console.log(`Client server listening on port ${PORT}`);
 });
