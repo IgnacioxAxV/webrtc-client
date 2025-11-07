@@ -1,27 +1,101 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
-    <style>
-        #videoGrid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-        }
+  <meta charset="UTF-8" />
+  <title>WebRTC Mini</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    /* === Sidebar === */
+    .sidebar {
+      width: 250px;
+      background: #1e1e1e;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border-right: 2px solid #333;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: #00bcd4;
+    }
+
+    #participants {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    #participants li {
+      background: #2a2a2a;
+      margin-bottom: 0.4rem;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    #muteBtn {
+      background: #00bcd4;
+      color: #fff;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    #muteBtn:hover {
+      background: #0097a7;
+    }
+
+    /* === Video Grid === */
+    #videoGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 0.8rem;
+      padding: 0.8rem;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      background: #000;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
-    <div id="videoGrid">
-        <video id="localVideo" autoplay playsinline muted></video>
-    </div>
-    <script type="module" src="script.js"></script>
-</body>
+  <!-- Sidebar con control de micrófono y lista de usuarios -->
+  <div class="sidebar">
+    <h3>Participantes</h3>
+    <ul id="participants"></ul>
+    <button id="muteBtn">Mic On</button>
+  </div>
 
+  <!-- Contenedor principal de videos -->
+  <div id="videoGrid">
+    <video id="localVideo" autoplay playsinline muted></video>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
 </html>

@@ -50,6 +50,7 @@ export class VideoConferenceApp {
     async setupLocalMedia() {
         try {
             const stream = await this.peerManager.setupLocalStream();
+            UIManager.setLocalStream(stream);
             this.localVideoElement.srcObject = stream;
             console.log('Stream local obtenido y listo.');
         } catch (error) {
